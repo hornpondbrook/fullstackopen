@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import PhoneList from './components/Persons'
+import Notification from './components/Notification'
 import PersonsService from './services/persons'
 
 
 const App = () => {
 
-  const [persons, setPersons] = useState([])
+  const [persons, setPersons] = useState(null)
   const [filterName, setFilterName] = useState('')
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [notification, setNotification] = useState({ message: null, type: 'info' })
 
   useEffect(() => {
     PersonsService
@@ -55,13 +57,19 @@ const App = () => {
             setNewName('')
             setNewNumber('')
             setFilterName('')
+            setNotification({
+              message: `Added ${newPerson.name}`,
+              type: 'info'
+            })
+            setTimeout(() => {
+              setNotification({ message: null, type: 'info ' })
+            }, 5000)
           })
       }
     }
   }
 
   const handleDelete = (id) => {
-    console.log("to delete ", id)
     const person = persons.find((person) => person.id === id)
 
     if (window.confirm(`Do you really want to delete ${person.name}?`)) {
@@ -70,6 +78,15 @@ const App = () => {
         .then((response) => {
           console.log(response)
           setPersons(persons.filter(person => person.id !== id))
+        })
+        .catch(error => {
+          setNotification({
+            message: `${person.name} has already been removed from server`,
+            type: 'error'
+          })
+          setTimeout(() => {
+            setNotification({ message: null, type: 'info ' })
+          }, 5000)
         })
     }
   }
@@ -82,6 +99,7 @@ const App = () => {
     <div>
 
       <h2>Phonebook</h2>
+      <Notification message={notification.message} type={notification.type}></Notification>
       <Filter
         filterName={filterName}
         handleFilterName={handleFilterName}>

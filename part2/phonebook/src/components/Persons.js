@@ -9,13 +9,17 @@ const Phone = ({ person, handleDelete }) => {
 
 const PhoneList = ({ persons, handleDelete }) => {
 
+    if (!persons) {
+        return null
+    }
+
     return (
         <ul>
             {persons.map((person) =>
-                <Phone 
-                    key={person.id} 
+                <Phone
+                    key={person.id}
                     person={person}
-                    handleDelete={ () => handleDelete(person.id) }>
+                    handleDelete={() => handleDelete(person.id)}>
                 </Phone>
             )}
         </ul>
