@@ -8,33 +8,20 @@ import PhoneList from './components/Persons'
 const App = () => {
 
   const [persons, setPersons] = useState([])
-  const [personsToShow, setPersonsToShow] = useState(persons)
   const [filterName, setFilterName] = useState('')
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
 
   useEffect(() => {
-    console.log('effect')
     axios
       .get('http://localhost:3002/persons')
       .then((response) => { 
-        console.log('promise fullfilled')
         setPersons(response.data)
-        setPersonsToShow(response.data)
        })
   }, [])
-  console.log('render', persons.length, 'persons')
 
   const handleFilterName = (event) => {
-    const curFilterName = event.target.value
-    setFilterName(curFilterName)
-    if (curFilterName.length > 0) {
-      setPersonsToShow(persons.filter((person) => {
-        return person.name.toLowerCase().includes(curFilterName.toLowerCase())
-      }))
-    } else {
-      setPersonsToShow(persons)
-    }
+    setFilterName(event.target.value)
   }
 
   const handleNewName = (event) => {
@@ -54,13 +41,16 @@ const App = () => {
         const id = persons.length + 1
         const newPersons = persons.concat({ name: newName, number: newNumber, id: id })
         setPersons(newPersons)
-        setPersonsToShow(newPersons)
         setNewName('')
         setNewNumber('')
         setFilterName('')
       }
     }
   }
+
+  const personsToShow = filterName
+    ? persons.filter((person) => person.name.toLowerCase().includes(filterName.toLowerCase()))
+    : persons
 
   return (
     <div>
@@ -81,7 +71,7 @@ const App = () => {
       </PersonForm>
 
       <h2>Numbers</h2>
-      <PhoneList persons={personsToShow}></PhoneList>
+      <PhoneList persons={ personsToShow }></PhoneList>
 
     </div>
   )

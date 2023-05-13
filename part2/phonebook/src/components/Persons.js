@@ -3,6 +3,7 @@ const Phone = ({ person }) => {
 }
 
 const PhoneList = ({ persons }) => {
+
     return (
         <ul>
             {persons.map((person) =>

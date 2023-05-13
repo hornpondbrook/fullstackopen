@@ -1,19 +1,54 @@
 {
-    "notes": [
-      {
-        "id": 1,
-        "content": "HTML is easy",
-        "important": true
-      },
-      {
-        "id": 2,
-        "content": "Browser can execute only JavaScript",
-        "important": false
-      },
-      {
-        "id": 3,
-        "content": "GET and POST are the most important methods of HTTP protocol",
-        "important": true
-      }
-    ]
-  }
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML is easy",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "Browser can execute only JavaScript",
+      "important": false
+    },
+    {
+      "id": 3,
+      "content": "GET and POST are the most important methods of HTTP protocol",
+      "important": true
+    },
+    {
+      "content": "this is a bew note",
+      "important": true,
+      "id": 4
+    },
+    {
+      "content": "this is a bew note",
+      "important": true,
+      "id": 5
+    },
+    {
+      "content": "asd",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "have an effect on the behavior of our web",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "",
+      "important": true,
+      "id": 8
+    },
+    {
+      "content": "It's beneficial to inspect the state of the backend server, e.g. through the browser:",
+      "important": true,
+      "id": 9
+    },
+    {
+      "content": "",
+      "important": true,
+      "id": 10
+    }
+  ]
+}
