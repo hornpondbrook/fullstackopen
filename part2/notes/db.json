@@ -8,7 +8,7 @@
     {
       "id": 2,
       "content": "Browser can execute only JavaScript",
-      "important": false
+      "important": true
     },
     {
       "id": 3,
@@ -49,6 +49,16 @@
       "content": "",
       "important": true,
       "id": 10
+    },
+    {
+      "content": "Extracting Communication with the Backend into a Separate Module",
+      "important": false,
+      "id": 11
+    },
+    {
+      "content": "",
+      "important": false,
+      "id": 12
     }
   ]
 }
